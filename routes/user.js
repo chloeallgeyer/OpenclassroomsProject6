@@ -8,3 +8,5 @@ router.delete('/:id', userCtrl.deleteOneUser);
 router.get('/', userCtrl.allUsers);
 
 module.exports = router;
+
+// utilisation auth pour user ?
