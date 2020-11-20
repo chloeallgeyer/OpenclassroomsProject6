@@ -52,30 +52,28 @@ exports.getSauces = (req, res, next) => {
 };
 
 exports.likeSauce = (req, res, next) => {
-  const like = req.body.like;
+  const { userId, like } = req.body;
   Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
       const sauceNotation = {
-        likes: 0,
-        dislikes: 0,
         usersLiked: sauce.usersLiked,
         usersDisliked: sauce.usersDisliked
       }
       switch (like) {
         case 1: // L'utilisateur like la sauce
-          sauceNotation.usersLiked.push(req.body.userId);
+          sauceNotation.usersLiked.push(userId);
           break;
         case 0: // L'utilisateur annule sa notation ( like ou dislike )
-          if (sauceNotation.usersLiked.includes(req.body.userId)) {
-            const index = sauceNotation.usersLiked.indexOf(req.body.userId);
+          if (sauceNotation.usersLiked.includes(userId)) {
+            const index = sauceNotation.usersLiked.indexOf(userId);
             sauceNotation.usersLiked.splice(index, 1);
           } else {
-            const index = sauceNotation.usersDisliked.indexOf(req.body.userId);
+            const index = sauceNotation.usersDisliked.indexOf(userId);
             sauceNotation.usersDisliked.splice(index, 1);
           };
           break;
         case -1: // L'utilisateur dislike la sauce
-          sauceNotation.usersDisliked.push(req.body.userId);
+          sauceNotation.usersDisliked.push(userId);
           break;
       };
       sauceNotation.likes = sauceNotation.usersLiked.length;
