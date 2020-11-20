@@ -17,6 +17,6 @@ Le front-end sera accessible à l'adresse -> http://localhost:4200
 ### Coté back : 
 
 * Cloner le back-end -> https://github.com/chloeallgeyer/OpenclassroomsProject6
-* Access db
+* Renommer le fichier .env.example en .env et renseigner la clé de connexion avec celle fournie dans le livrable
 * Depuis le dossier backend dans un terminal :
-    * Executer node server
+    * Exécuter node server
